@@ -1,0 +1,10 @@
+  "description": "Управляйте SOCKS5 и HTTP(S) прокси через красивый UI.",
+
+"host_permissions": [
+    "<all_urls>"
+
+    background.js DONE
+    manifest.json DONE 1
+    popup.css ?????
+    popup.html DONE 1
+    popup.js DONE 1

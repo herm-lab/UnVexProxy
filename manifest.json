@@ -1,30 +1,33 @@
 {
-    "manifest_version": 3,
-    "name": "UnVexProxy",
-    "description": "Proxy manager (HTTP & SOCKS5) с профилями и проверкой работоспособности. Chromium (Chrome/Edge/Yandex).",
-    "version": "1.0.0",
-    "permissions": [
-      "proxy",
-      "storage",
-      "tabs",
-      "activeTab",
-      "webRequest",
-      "webRequestAuthProvider"
-    ],
-    "host_permissions": [
-      "<all_urls>"
-    ],
-    "action": {
-      "default_popup": "popup.html",
-      "default_title": "UnVexProxy"
-    },
-    "background": {
-      "service_worker": "background.js"
-    },
-    "icons": {
+  "manifest_version": 3,
+  "name": "Fancy Proxy Switcher",
+  "version": "1.1",
+  "description": "Управляйте SOCKS5 и HTTP(S) прокси через красивый UI.",
+  "permissions": [
+    "proxy",
+    "storage",
+    "webRequest",
+    "webRequestAuthProvider",
+    "webRequestBlocking",
+    "tabs"
+  ],
+  "host_permissions": [
+    "<all_urls>"
+  ],
+  "background": {
+    "service_worker": "background.js"
+  },
+  "action": {
+    "default_popup": "popup.html",
+    "default_icon": {
       "16": "icons/icon16.png",
       "48": "icons/icon48.png",
       "128": "icons/icon128.png"
     }
+  },
+  "icons": {
+    "16": "icons/icon16.png",
+    "48": "icons/icon48.png",
+    "128": "icons/icon128.png"
   }
-  
+}

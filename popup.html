@@ -1,69 +1,94 @@
-<!doctype html>
+<!DOCTYPE html>
 <html lang="ru">
 <head>
-  <meta charset="utf-8" />
-  <meta name="viewport" content="width=device-width,initial-scale=1" />
-  <title>UnVexProxy</title>
-  <link rel="stylesheet" href="popup.css" />
+  <meta charset="UTF-8">
+  <title>Fancy Proxy</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      padding: 10px;
+      width: 320px;
+      background: #f3f3f3;
+    }
+    input, select, button {
+      margin: 4px 0;
+      padding: 6px;
+      width: 100%;
+      border-radius: 4px;
+      border: 1px solid #ccc;
+    }
+    button {
+      cursor: pointer;
+    }
+    ul { list-style: none; padding: 0; }
+    .profile-item { margin-top: 6px; padding: 6px; background: #fff; border-radius: 4px; box-shadow: 0 1px 2px rgba(0,0,0,0.1); }
+    .profile-meta { font-size: 0.9em; color: #777; }
+    .profile-actions { margin-top: 6px; display: flex; justify-content: space-between; }
+    .small-btn { flex: 1; margin: 2px; }
+
+    .switch {
+      position: relative;
+      display: inline-block;
+      width: 50px;
+      height: 24px;
+      margin-right: 10px;
+    }
+    .switch input { opacity: 0; width: 0; height: 0; }
+    .slider {
+      position: absolute;
+      cursor: pointer;
+      top: 0; left: 0;
+      right: 0; bottom: 0;
+      background-color: #ccc;
+      transition: .4s;
+      border-radius: 24px;
+    }
+    .slider:before {
+      position: absolute;
+      content: "";
+      height: 18px; width: 18px;
+      left: 3px; bottom: 3px;
+      background-color: white;
+      transition: .4s;
+      border-radius: 50%;
+    }
+    input:checked + .slider {
+      background-color: #2196F3;
+    }
+    input:checked + .slider:before {
+      transform: translateX(26px);
+    }
+    .toggle-wrapper {
+      display: flex;
+      align-items: center;
+      margin-top: 10px;
+    }
+  </style>
 </head>
 <body>
-  <div class="app">
-    <header class="header">
-      <div class="logo">UnVex<span class="accent">Proxy</span></div>
-      <div class="status" id="status">Idle</div>
-    </header>
-
-    <main class="content">
-      <section class="form-card">
-        <h3>Новый профиль</h3>
-        <label>Протокол
-          <select id="protocol">
-            <option value="http">HTTP</option>
-            <option value="socks5">SOCKS5</option>
-          </select>
-        </label>
-
-        <label>IP / Host
-          <input id="host" type="text" placeholder="111.111.111.111" />
-        </label>
-
-        <label>Порт
-          <input id="port" type="number" placeholder="1080" />
-        </label>
-
-        <label>Логин
-          <input id="username" type="text" placeholder="Логин" />
-        </label>
-
-        <label>Пароль
-          <input id="password" type="password" placeholder="Пароль" />
-        </label>
-
-        <div class="row">
-          <button id="saveBtn" class="btn primary">Сохранить профиль</button>
-          <button id="connectBtn" class="btn">Подключить</button>
-        </div>
-      </section>
-
-      <section class="list-card">
-        <h3>Сохранённые прокси</h3>
-        <ul id="profilesList" class="profiles"></ul>
-      </section>
-
-      <section class="test-card">
-        <button id="testBtn" class="btn test">Проверить прокси</button>
-        <div id="testResult" class="testResult"></div>
-      </section>
-    </main>
-
-    <footer class="footer">
-      <div class="footer-content">
-        <span class="footer-text">Свяжитесь с нами: </span>
-        <a href="pass" target="_blank" class="tg-link">Telegram</a>
-      </div>
-    </footer>
+  <h3>Fancy Proxy</h3>
+  <select id="protocol">
+    <option value="http">HTTP</option>
+    <option value="socks5">SOCKS5</option>
+  </select>
+  <input id="host" placeholder="IP / Хост">
+  <input id="port" placeholder="Порт">
+  <input id="username" placeholder="Логин (необязательно)">
+  <input id="password" type="password" placeholder="Пароль (необязательно)">
+  <button id="saveBtn">Сохранить профиль</button>
+  <button id="connectBtn">Подключиться</button>
+  <div class="toggle-wrapper">
+    <label class="switch">
+      <input type="checkbox" id="proxyToggle">
+      <span class="slider round"></span>
+    </label>
+    <span id="toggleLabel">Прокси выключен</span>
   </div>
-
+  <div id="status"></div>
+  <button id="testBtn">Проверить IP</button>
+  <div id="testResult"></div>
+  <h4>Профили</h4>
+  <ul id="profilesList"></ul>
   <script src="popup.js"></script>
 </body>
 </html>
